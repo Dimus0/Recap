@@ -1,5 +1,4 @@
 from app.db.session import Base, engine
-from app.db.session import Base
 from sqlalchemy import text
 
 def init_db():
