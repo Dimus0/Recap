@@ -3,14 +3,14 @@ from sqlalchemy import UUID, Column, DateTime, ForeignKey,Enum as SQLEnum, Strin
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app.db.session import Base
-from backend.app.models.enums import RoleEnum
+from app.models.enums import RoleEnum
 
 class Team(Base):
     __tablename__ = "teams"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String, nullable=False)
-    owner_id = Column(UUID(as_uuid=True), ForeignKey("profiles.id", ondelete="CASCADE"), nullable=False)
+    owner_id = Column(UUID(as_uuid=True), ForeignKey("profiles.id", ondelete="SET NULL"), nullable=True)
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
 
     owner = relationship("Profile", back_populates="teams")
@@ -20,8 +20,8 @@ class Team(Base):
 class TeamMembers(Base):
     __tablename__ = "team_members"
 
-    team_id = Column(UUID(as_uuid=True), ForeignKey("teams.id", ondelete="CASCADE"), nullable=False)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("profiles.id", ondelete="CASCADE"), nullable=False)
+    team_id = Column(UUID(as_uuid=True), ForeignKey("teams.id", ondelete="CASCADE"), nullable=False, primary_key=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("profiles.id", ondelete="CASCADE"), nullable=False, primary_key=True)
     role = Column(SQLEnum(RoleEnum), default=RoleEnum.MEMBER, nullable=False)
     joined_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
 

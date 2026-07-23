@@ -3,7 +3,7 @@ from sqlalchemy import UUID, Column, DateTime, Enum as SQLEnum, ForeignKey, Stri
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app.db.session import Base
-from backend.app.models.enums import NoteSourceEnum
+from app.models.enums import NoteSourceEnum
 
 class Note(Base):
     __tablename__ = "notes"

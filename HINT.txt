@@ -1,0 +1,54 @@
+Щоб запустити проект на FastAPI та створення БД using Alembic need:
+
+Step-by-step
+
+1. Встановити залежності
+Спочатку ставимо все необхідне:
+
+    FastAPI
+
+    Uvicorn (для запуску сервера)
+
+    SQLAlchemy
+
+    драйвер БД (наприклад, psycopg2-binary для PostgreSQL)
+
+    Alembic
+
+pip install fastapi uvicorn sqlalchemy psycopg2-binary alembic python-dotenv
+
+2. Створити структуру проєкту
+Простий варіант:
+
+text
+project/
+├── app/
+│   ├── main.py
+│   ├── db/
+│   │   ├── base.py      # Base для моделей
+│   │   └── session.py   # engine + SessionLocal
+│   └── models/
+│       └── user.py      # приклад моделі
+├── alembic/             # буде створено автоматично
+├── alembic.ini          # буде створено автоматично
+└── .env                 # DATABASE_URL
+
+
+Command
+
+# 1. Встановити залежності
+pip install fastapi uvicorn sqlalchemy psycopg2-binary alembic python-dotenv
+
+# 2. Ініціалізувати Alembic
+alembic init alembic
+
+# 3. Налаштувати env.py (Base, models, DATABASE_URL)
+
+# 4. Створити міграцію
+alembic revision --autogenerate -m "initial migration"
+
+# 5. Застосувати міграції
+alembic upgrade head
+
+# 6. Запустити сервер
+uvicorn app.main:app --reload
