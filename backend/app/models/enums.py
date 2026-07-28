@@ -1,4 +1,3 @@
-from sqlalchemy import  Enum as SQLEnum
 from enum import Enum
 
 class RoleEnum(str, Enum):

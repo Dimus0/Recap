@@ -1,9 +1,7 @@
 import uuid
-from sqlalchemy import FLOAT, UUID, Column, DateTime, ForeignKey, String,Float,Date, func, ARRAY
+from sqlalchemy import FLOAT, UUID, Column, DateTime, ForeignKey, func, ARRAY
 from sqlalchemy.orm import relationship
-from datetime import datetime
 from app.db.session import Base
-from pgvector.sqlalchemy import Vector
 
 
 class NoteEmbedding(Base):

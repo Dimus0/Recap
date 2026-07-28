@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import UUID, Column, DateTime, ForeignKey, Enum as SQLEnum, String,Float,Date, func
+from sqlalchemy import UUID, Column, DateTime, ForeignKey, Enum as SQLEnum, String, func
 from sqlalchemy.orm import relationship
 from app.db.session import Base
 from sqlalchemy.dialects.postgresql import JSONB
@@ -14,9 +14,9 @@ class Integration(Base):
     provider = Column(SQLEnum(IntegrationProviderEnum), nullable=False)
     access_token = Column(String, nullable=False)  # Should be encrypted before storage
     refresh_token = Column(String, nullable=True)  # Should be encrypted before storage
-    meta_data = Column(JSONB, nullable=True)  
-    
+    meta_data = Column(JSONB, nullable=True)
+
     connected_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
-    profile = relationship("Profile", backref="integrations")
+    profile = relationship("Profile", back_populates="integrations")

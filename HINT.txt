@@ -52,3 +52,5 @@ alembic upgrade head
 
 # 6. Запустити сервер
 uvicorn app.main:app --reload
+ OR
+uv run python main.py

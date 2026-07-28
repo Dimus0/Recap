@@ -1,7 +1,6 @@
 import uuid
-from sqlalchemy import UUID, Column, DateTime, ForeignKey, String,Float,Date, func
+from sqlalchemy import UUID, Column, DateTime, String,func
 from sqlalchemy.orm import relationship
-from datetime import datetime
 from app.db.session import Base
 
 class Profile(Base):

@@ -1,8 +1,7 @@
 import uuid
-from sqlalchemy import UUID, Boolean, Column, DateTime, ForeignKey, String,Float,Date, Text, UniqueConstraint, func
+from sqlalchemy import UUID, Boolean, Column, DateTime, ForeignKey, String,Date, Text, UniqueConstraint, func
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
-from datetime import datetime
 from app.db.session import Base
 
 class Summary(Base):

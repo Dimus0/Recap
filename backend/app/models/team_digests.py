@@ -1,8 +1,7 @@
 import uuid
-from sqlalchemy import UUID, Column, DateTime, ForeignKey, String,Float,Date, UniqueConstraint, func
+from sqlalchemy import UUID, Column, DateTime, ForeignKey, Date, UniqueConstraint, func
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
-from datetime import datetime
 from app.db.session import Base
 
 class TeamDigest(Base):
