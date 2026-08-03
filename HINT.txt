@@ -15,9 +15,9 @@ Step-by-step
 
     Alembic
 
-pip install fastapi uvicorn sqlalchemy psycopg2-binary alembic python-dotenv
+pip install fastapi uvicorn sqlalchemy psycopg3-binary alembic python-dotenv
 
-2. Створити структуру проєкту
+3. Створити структуру проєкту
 Простий варіант:
 
 text
@@ -54,3 +54,33 @@ alembic upgrade head
 uvicorn app.main:app --reload
  OR
 uv run python main.py
+
+Запуск докер 
+
+    docker compose up -d
+
+Якщо зупинити 
+
+    docker compose stop
+
+Повінстю зупинити та видалити + якщо є " -v " видаляє контейнер і дані
+
+    docker compose down -v
+
+Якщо через докер подивитися таблицю то
+
+    docker exec -it recap_db psql -U postgres -d recap_db -c "\d note_embeddings"
+
+Логи контейнера (корисно при помилках старту):
+
+docker compose logs db
+docker compose logs -f db
+
+Перевірити, що піднялось:
+
+   docker compose ps
+
+
+Перевірте, на якому порту слухає локальний Postgres 18
+
+    netstat -ano | findstr :5432

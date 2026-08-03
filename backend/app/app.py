@@ -3,8 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-import app.models.models  # noqa: F401 — register all ORM mappers
-
+import app.models.models
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
